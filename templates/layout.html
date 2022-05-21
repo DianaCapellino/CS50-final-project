@@ -25,12 +25,16 @@
             <!-- This is the index at the top of the page -->
             <div>
                 <ul>
-                    <a href="/"><img src="/static/GoldenDotCuadrado.png" class="index" width="100px"></a>
+                    <a href="/"><img src="/static/GoldenDotCuadrado.png" class="index" id="dot" width="100px"></a>
                     <li class="index"><a href="games.html"><b>GAMES</b></a></li>
                     <li class="index"><a href="news.html"><b>NEWS</b></a></li>
-                    <li class="index"><a href="yourgames.html"><b>GAMES</b></a></li>
+                    <li class="index"><a href="yourgames.html"><b>YOUR GAMES</b></a></li>
                     <li class="index"><a href="contactus.html"><b>CONTACT US</b></a></li>
             </div>
+            <form>
+                <input type="text">
+                <button type="submit">Search</button>
+            </form>
             <div>
                 {% if session["user_id"] %}
                     <ul>

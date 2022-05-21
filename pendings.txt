@@ -1,1 +1,3 @@
 * Enviar mail al usuario cuando se registra para que cliquee y verifique el mail
+* Permitir cambiar idioma
+* Hacer versión celular
