@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <meta name="description" content="Golden DOT Games">
+        <meta name="author" content="Diana Laura Capellino">
+        <link href="/static/goldendot.ico" rel="icon">
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <!-- Get the fonts from Google -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+
+        <!-- http://getbootstrap.com/docs/5.2/ & icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        
+        <title>Golden DOT Games</title>
+    </head>
+
+    <body class="gradient">
+        <nav class="navbar navbar-light">
+            <!-- This is the index at the top of the page -->
+            <div>
+                <ul>
+                    <a href="/"><img src="/static/GoldenDotCuadrado.png" class="index" width="100px"></a>
+                    <li class="index"><a href="games.html"><b>GAMES</b></a></li>
+                    <li class="index"><a href="news.html"><b>NEWS</b></a></li>
+                    <li class="index"><a href="yourgames.html"><b>GAMES</b></a></li>
+                    <li class="index"><a href="contactus.html"><b>CONTACT US</b></a></li>
+            </div>
+            <div>
+                {% if session["user_id"] %}
+                    <ul>
+                        <li><a href="/logout">Log Out</a></li>
+                    </ul>
+                {% else %}
+                    <ul>
+                        <li class="log"><a href="/register">Register</a></li>
+                        <li class="log"><a href="/login">Log In</a></li>
+                    </ul>
+                {% endif %}
+            </div>
+        </nav> 
+
+        {% if get_flashed_messages() %}
+        <header>
+            <div role="alert">
+                {{ get_flashed_messages() | join(" ") }}
+            </div>
+            <hr>
+        </header>
+        {% endif %}
+
+
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+        <footer>
+            <div class="container">
+                <ul>
+                    <b>Follow us:</b>
+                    <li class="media"><a href="https://www.facebook.com/diana.capellino" target="_blank">Facebook</a></li>
+                    <li class="media"><a href="https://www.instagram.com/diana.capellino/" target="_blank">Instagram</a></li>
+                    <li class="media"><a href="https://www.linkedin.com/in/diana-capellino-8865b4128/" target="_blank">LinkedIn</a></li>
+                    <li class="media"><a href="https://twitter.com/KoalaDiana" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

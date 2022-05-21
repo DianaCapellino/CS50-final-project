@@ -1,0 +1,86 @@
+/*
+*
+* Credits:
+* Based on the original PNG/Sketch gradients by Vladimir Kudinov
+* https://www.behance.net/gallery/30067997/Hue-Free-Promo-Backdrops-and-Gradients
+*
+* CSS Prototype using CSS3 background-blend modes by More than Themes
+* http://www.morethanthemes.com
+*
+* Version - 1.0.0
+* Licensed under the MIT license - http://opensource.org/licenses/MIT
+*
+*/
+.gradient {
+    background: -webkit-linear-gradient(left, #f7f7e1 4%, #eeee9f 98%), -webkit-linear-gradient(16deg, rgba(255, 240, 191, 0.5) 54%, rgba(228, 213, 6, 0.5) 100%);
+    background: linear-gradient(90deg, #f7f7f3 4%, #fcfc82 98%), linear-gradient(74deg, rgba(194, 187, 98, 0.5) 54%, rgba(212, 199, 8, 0.5) 100%);
+    background-blend-mode: multiply;
+}
+
+    
+* {
+    font-family: 'Russo One', sans-serif;
+    color:#583d02;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 40px;
+}
+
+.index {
+    display: inline-block;
+    padding: 7px;
+}
+
+.log {
+    display: inline-block;
+    padding: 7px;
+}
+
+.media {
+    display: inline;
+    padding: 10px;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 40px;
+    line-height: 40px; /* Vertically center the text there */
+   }
+
+footer > .container {
+    padding-right: 5px;
+    padding-left: 5px;
+ }
+
+footer > .media {
+    margin: 15px;
+    padding: 15px;
+    height: 10%;
+}
+
+input {
+    background-color: transparent;
+}
+
+button {
+    background-color: transparent;
+}
+
+main {
+    background-color: #eeee9f;
+    height: 70%;
+}
+
+a:link, a:visited, a:active {
+    text-decoration: none;
+    color: #583d02;
+}

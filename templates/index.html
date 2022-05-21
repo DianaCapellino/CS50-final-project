@@ -1,28 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <link href="styles.css" rel="stylesheet">
-        <meta name="viewport" content="initial-scale=1, width=device-width">
-        <meta name="description" content="Golden DOT Games">
-        <meta name="author" content="Diana Laura Capellino">
-        <title>Golden DOT Games</title>
-    </head>
-    <body>
-        <header>
-            <nav>
-                <!-- This is the index at the top of the page -->
-                <a href="index.html" class="index">Image DOT</a>
-                <a href="games.html" class="index" id="diana"><b>GAMES</b></a>
-                <a href="news.html" class="index">NEWS</a>
-                <a href="yourgames.html" class="index">YOUR GAMES</a>
-                <a href="contactus.html" class="index">CONTACT US</a>
-            </nav> 
-        </header>
-        <main>
+{% extends "layout.html" %}
 
-        </main>
-        <footer>
+{% block title %}
+    Index
+{% endblock %}
 
-        </footer>
-    </body>
-</html>
+{% block main %}
+
+<img scr="/static/Prueba2.png">
+
+{% endblock %}
