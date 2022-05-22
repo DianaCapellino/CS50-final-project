@@ -7,9 +7,8 @@
 {% block main %}
 
 <form action="/register" method="post">
-    <p>
-        Please provide your Username and Password to register:
-    </p>
+    <i>Please provide your Username and Password to register:</it>
+    <hr>
     <div>
         <input autocomplete="off" autofocus id="username" name="username" placeholder="Username" type="text">
     </div>
@@ -22,6 +21,7 @@
     <div>
         <input id="email" name="email" placeholder="E-mail" type="email"> 
     </div>
+    <hr>
     <button type="submit">Register</button>
 </form>
 

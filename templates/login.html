@@ -7,15 +7,15 @@
 {% block main %}
 
 <form action="/login" method="post">
-    <p>
-        Please provide your Username and Password to log-in:
-    </p>
+    <i>Please provide your Username and Password to log-in:</i>
+    <hr>
     <div>
         <input autocomplete="off" autofocus id="username" name="username" placeholder="Username" type="text">
     </div>
     <div>
         <input id="password" name="password" placeholder="Password" type="password">
     </div>
+    <hr>
     <button type="submit">Log In</button>
 </form>
 

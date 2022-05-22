@@ -1,11 +1,14 @@
 import os
+import re
 
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
+from flask_mail import Mail, Message
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
+from itsdangerous import URLSafeTimedSerializer
 
 from helpers import error, login_required
 
@@ -25,6 +28,12 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///goldendot.db")
 
+# Configure e-mail
+app.config.from_pyfile("config.cfg")
+golden_email = "goldendotgames@gmail.com"
+mail = Mail(app)
+s = URLSafeTimedSerializer("GoldenSecretKey")
+
 @app.after_request
 def after_request(response):
     """Ensure responses aren't cached"""
@@ -37,6 +46,52 @@ def after_request(response):
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
+@app.route("/games")
+def games():
+    return render_template("games.html")
+
+
+@app.route("/news")
+def news():
+    return render_template("news.html")
+
+
+@app.route("/yourgames")
+def yourgames():
+    return render_template("yourgames.html")
+
+
+@app.route("/contactus", methods=["GET", "POST"])
+def contactus():
+    if request.method == "POST":
+
+        # Get the information from the form
+        name = request.form.get("name")
+        email = request.form.get("email")
+        user_message = request.form.get("message")
+
+        # Send e-mail from user
+        message = Message("Golden DOT Games Website - Message from user {}".format(name),
+                          recipients=[golden_email])
+        message.body = "A user has sent a message as follows: {}".format(user_message)
+        mail.send(message)
+
+        # Confirm the user that the message has been received
+        try:
+            message_confirmation = Message("Golden DOT Games Website - Thanks for your message", 
+                                           recipients=[email])
+            message_confirmation.body = "You have sent a message to Golden DOT Games Website. Thanks!"
+            mail.send(message_confirmation)
+        except:
+            error("Your email failed but your message has been sent")
+        
+        return redirect("/")
+
+    else:
+        return render_template("contactus.html")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -61,7 +116,12 @@ def login():
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return error("invalid username and/or password")
+            return error("Invalid username and/or password")
+
+        # Ensure the user has confirmed the email
+        user_e_confirm = rows[0]["e_confirm"]
+        if int(user_e_confirm) == 0:
+            return error("You must validate your email with the link we have sent")
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
@@ -119,9 +179,32 @@ def register():
         except:
             return error("Username already exists. Please select a different one.")
 
+        # Make the URL to confirm email is functional
+        token = s.dumps(email)
+        link = url_for("confirm_email", token=token, external=True)
+
+        # Send e-mail
+        message = Message("Welcome to Golden DOT Games! Your e-mail must be confirmed", recipients=[email])
+        message.body = "Your link is {}".format(link)
+        mail.send(message)
+
         # Return the user to the login page
         return redirect("/login")
 
     # If they haven't registered yet it shows the register template
     else:
         return render_template("register.html")
+
+@app.route("/confirm_email/<token>")
+def confirm_email(token):
+    """Confirm the e-mail with the token"""
+
+    # Try to validate the token provided, and if not, get an error message
+    try:
+        email = s.loads(token, max_age=300)
+    except:
+        return error("Your token is incorrect or expired")
+
+    # Modify the information in the database to set the user with a confirmed email
+    db.execute("UPDATE users SET e_confirm = 1 WHERE email= ? ", email)
+    return redirect("/login")
