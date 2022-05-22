@@ -8,16 +8,6 @@
     background: linear-gradient(90deg, #ffffff 4%, #fcfc82 98%), linear-gradient(74deg, rgba(194, 187, 98, 0.5) 54%, rgba(212, 199, 8, 0.5) 100%);
     background-blend-mode: multiply;
 }
-    
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    /* Margin bottom by footer height */
-    margin-bottom: 40px;
-}
 
 .index, .log {
     display: inline-block;
@@ -33,9 +23,7 @@ body {
     padding: 10px;
 }
 footer {
-    position: absolute;
     width: 100%;
-    /* Set the fixed height of the footer here */
     height: 40px;
     line-height: 40px; /* Vertically center the text there */
    }
@@ -63,7 +51,7 @@ button {
 main {
     background-color: #eeee9f;
     align-content: center;
-    height: 450px;
+    min-height: 450px;
     position: relative;
     width: 100%;
 }
@@ -73,7 +61,7 @@ a:link, a:visited, a:active {
     color: #583d02;
 }
 
-form, p, img, figcaption, h1 {
+form, p, img, h1 {
     padding: 20px;
 }
 
@@ -88,4 +76,12 @@ h1 {
 #message {
     height: 200px;
     position: relative;
+}
+
+.games {
+    display: inline-block;
+}
+
+.game_table {
+    margin: 20px;
 }

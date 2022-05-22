@@ -17,6 +17,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         
+        <!-- Script in JavaScript-->
+        <script scr="/static/script.js"></script>
         <title>Golden DOT Games</title>
     </head>
 
@@ -31,10 +33,11 @@
                     <li class="index"><a href="/yourgames"><b>YOUR GAMES</b></a></li>
                     <li class="index"><a href="/contactus"><b>CONTACT US</b></a></li>
             </div>
-            <form id="search_bar">
-                <input type="text">
+            <!-- Future feature to implement search-->
+            <!--<form action="/search" method="get" id="search_bar">
+                <input autocomplete="off" name="q" type="search">
                 <button type="submit">Search</button>
-            </form>
+            </form>-->
             <div>
                 {% if session["user_id"] %}
                     <ul>

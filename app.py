@@ -34,6 +34,13 @@ golden_email = "goldendotgames@gmail.com"
 mail = Mail(app)
 s = URLSafeTimedSerializer("GoldenSecretKey")
 
+GAMES = [
+    {"name": "Dinosaur Escape Jumping", "id": 0},
+    {"name": "Roll the Golden Ball", "id": 1},
+    {"name": "Golden Search Adventure", "id": 2},
+    {"name": "Firefly Discovery", "id": 3}
+]
+
 @app.after_request
 def after_request(response):
     """Ensure responses aren't cached"""
@@ -57,14 +64,82 @@ def games():
 def news():
     return render_template("news.html")
 
+@app.route("/search")
+def search():
+    return render_template("games.html", games=GAMES)
 
 @app.route("/yourgames")
+@login_required
 def yourgames():
-    return render_template("yourgames.html")
+    """List of the favourite games saved by user"""
+    
+    # Get the user id from the session
+    user_id = session["user_id"]
+
+    # Get the current list of favourites
+    favourites = db.execute("SELECT * FROM favourites WHERE user_id = ?", user_id)
+
+    # If there are no games in the list, return error
+    if len(favourites) < 1:
+        return error("You do not have games in favourites yet")
+
+    # Return the page passing the information of the favourites of the user
+    return render_template("yourgames.html", favourites=favourites)
+
+
+@app.route("/add_favourite", methods=["POST"])
+@login_required
+def add_favourite():
+    """Add Favourite user game"""
+
+    # Get the user id from the session
+    user_id = session["user_id"]
+
+    # Get the game_id from the item chicked
+    game_id = int(request.form.get("id"))
+    game_name = GAMES[game_id]["name"]
+
+    # Check if the game is already in the list
+    favourites = db.execute("SELECT * FROM favourites WHERE user_id = ? AND game_id = ?", user_id, game_id)
+    if len(favourites) != 0:
+        return error("Your game is already one of your favourites")
+
+    # Add the game to the favourite games
+    db.execute("INSERT INTO favourites (user_id, game_id, game_name) VALUES (?, ?, ?)", 
+               user_id, game_id, game_name)
+
+    # Redirect to Your Games site
+    return redirect("/yourgames")
+
+
+@app.route("/remove_favourite", methods=["POST"])
+@login_required
+def remove_favourite():
+    """Remove Favourite user's game"""
+
+    # Get the user id from the session
+    user_id = session["user_id"]
+
+    # Get the game_id from the item chicked
+    game_id = request.form.get("id")
+
+    # Check that the game is in the list
+    favourites = db.execute("SELECT * FROM favourites WHERE user_id = ? AND game_id = ?", user_id, game_id)
+    if len(favourites) == 0:
+        return error("Your game is not in the list of your favourites")
+
+    # Remove the game to the favourite games
+    db.execute("DELETE FROM favourites WHERE user_id = ? AND game_id = ?", 
+               user_id, game_id)
+
+    # Redirect to Your Games site
+    return redirect("/yourgames")
 
 
 @app.route("/contactus", methods=["GET", "POST"])
 def contactus():
+    """Form used by users to leave messages"""
+
     if request.method == "POST":
 
         # Get the information from the form
@@ -89,6 +164,7 @@ def contactus():
         
         return redirect("/")
 
+    # Render the template to confirm the information
     else:
         return render_template("contactus.html")
 
