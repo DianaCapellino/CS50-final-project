@@ -257,7 +257,7 @@ def register():
 
         # Make the URL to confirm email is functional
         token = s.dumps(email)
-        link = url_for("confirm_email", token=token, external=True)
+        link = url_for("confirm_email", token=token, _external=True)
 
         # Send e-mail
         message = Message("Welcome to Golden DOT Games! Your e-mail must be confirmed", recipients=[email])
