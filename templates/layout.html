@@ -50,14 +50,12 @@
                     </ul>
                 {% endif %}
             </div>
-        </nav> 
-
+        </nav>
         {% if get_flashed_messages() %}
         <header>
             <div role="alert">
                 {{ get_flashed_messages() | join(" ") }}
             </div>
-            <hr>
         </header>
         {% endif %}
 
@@ -68,7 +66,7 @@
         <footer>
             <div class="container">
                 <ul>
-                    <b>Follow us:</b>
+                    <span class="social-icon facebook" rel="">&nbsp;</span>
                     <li class="media"><a href="https://www.facebook.com/diana.capellino" target="_blank">Facebook</a></li>
                     <li class="media"><a href="https://www.instagram.com/diana.capellino/" target="_blank">Instagram</a></li>
                     <li class="media"><a href="https://www.linkedin.com/in/diana-capellino-8865b4128/" target="_blank">LinkedIn</a></li>

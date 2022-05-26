@@ -1,11 +1,11 @@
 * {
     font-family: 'Russo One', sans-serif;
-    color:#583d02;
+    color:#ffee00;
 }
 
 .gradient {
-    background: -webkit-linear-gradient(left, #ffffff 4%, #eeee9f 98%), -webkit-linear-gradient(16deg, rgba(255, 240, 191, 0.5) 54%, rgba(228, 213, 6, 0.5) 100%);
-    background: linear-gradient(90deg, #ffffff 4%, #fcfc82 98%), linear-gradient(74deg, rgba(194, 187, 98, 0.5) 54%, rgba(212, 199, 8, 0.5) 100%);
+    background: -webkit-linear-gradient(left, #332e00 4%, #000000 98%), -webkit-linear-gradient(16deg, rgba(34, 32, 25, 0.5) 54%, rgba(32, 30, 1, 0.5) 100%);
+    background: linear-gradient(90deg, #2c2b00 4%, #000000 98%), linear-gradient(74deg, rgba(37, 36, 17, 0.5) 54%, rgba(31, 29, 2, 0.5) 100%);
     background-blend-mode: multiply;
 }
 
@@ -21,6 +21,7 @@
 .media {
     display: inline;
     padding: 10px;
+    margin: 15px;
 }
 footer {
     width: 100%;
@@ -28,41 +29,28 @@ footer {
     line-height: 40px; /* Vertically center the text there */
    }
 
-footer > .container {
-    padding-right: 5px;
-    padding-left: 5px;
- }
-
-.media {
-    margin: 15px;
-    padding: 15px;
-}
-
-input {
-    background-color: #eeee9f;
-    width: 300px;
-}
-
-button {
-    background-color: #583d02;
-    color:#eeee9f;
-}
-
-main {
-    background-color: #eeee9f;
-    align-content: center;
-    min-height: 450px;
-    position: relative;
-    width: 100%;
-}
-
 a:link, a:visited, a:active {
     text-decoration: none;
     color: #583d02;
 }
 
-form, p, img, h1 {
-    padding: 20px;
+a:hover {
+    color: #ffee00;
+    size: bigger;
+}
+.container {
+    padding-right: 5px;
+    padding-left: 5px;
+ }
+
+input {
+    background-color: #141400;
+}
+
+main {
+
+    min-height: 430px;
+    width: 100%;
 }
 
 h1 {
@@ -78,10 +66,12 @@ h1 {
     position: relative;
 }
 
-.games {
-    display: inline-block;
+button {
+    border-radius: 0.25rem;
+    background-color: #ffee00;
+    color:#000000;
 }
 
-.game_table {
-    margin: 20px;
+.card {
+    min-height: 25rem;
 }

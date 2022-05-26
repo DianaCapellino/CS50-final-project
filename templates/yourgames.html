@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your Games
+{% endblock %}
+
+{% block main %}
+<hr>
+<h1>YOUR GAMES</h1>
+<table class="game_table">
+    <thead>
+        <tr>
+            <th>Game</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for favourite in favourites %}
+        <tr>
+            <td>{{ favourite["game_name"] }}</td>
+            <td>
+                <form action="/remove_favourite" method="POST">
+                    <input name="id" type="hidden" value="{{ favourite["game_id"] }}">
+                    <input type="submit" value="Remove from favourites">
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

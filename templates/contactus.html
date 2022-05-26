@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Contact Us
+{% endblock %}
+
+{% block main %}
+<hr>
+<form action="/contactus" method="post">
+    <i>Please leave your message, name and e-mail to contact you!</i>
+    <hr>
+    <div>
+        <input autocomplete="off" autofocus id="name" name="name" placeholder="Name" type="text">
+    </div>
+    <div>
+        <input autocomplete="off" id="message" name="message" placeholder="Message" type="text" height: 50px>
+    </div>
+    <div>
+        <input autocomplete="off" id="email" name="email" placeholder="E-mail" type="email"> 
+    </div>
+    <hr>
+    <button type="submit">Send</button>
+</form>
+
+
+{% endblock %}

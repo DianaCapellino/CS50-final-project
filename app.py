@@ -38,7 +38,12 @@ GAMES = [
     {"name": "Dinosaur Escape Jumping", "id": 0},
     {"name": "Roll the Golden Ball", "id": 1},
     {"name": "Golden Search Adventure", "id": 2},
-    {"name": "Firefly Discovery", "id": 3}
+    {"name": "Firefly Discovery", "id": 3},
+    {"name": "The Golden Race", "id": 4},
+    {"name": "Ball Fantasy", "id": 5},
+    {"name": "Castle of Dreams", "id": 6},
+    {"name": "The Magic has Begun", "id": 7},
+    {"name": "Golden Cooking Experience", "id": 8}
 ]
 
 @app.after_request
@@ -59,10 +64,6 @@ def index():
 def games():
     return render_template("games.html")
 
-
-@app.route("/news")
-def news():
-    return render_template("news.html")
 
 @app.route("/search")
 def search():
@@ -284,3 +285,7 @@ def confirm_email(token):
     # Modify the information in the database to set the user with a confirmed email
     db.execute("UPDATE users SET e_confirm = 1 WHERE email= ? ", email)
     return redirect("/login")
+
+@app.route("/news")
+def news():
+    return render_template("news.html")
