@@ -65,6 +65,11 @@ def games():
     return render_template("games.html")
 
 
+@app.route("/news")
+def news():
+    return render_template("news.html")
+
+
 @app.route("/search")
 def search():
     return render_template("games.html", games=GAMES)
@@ -78,7 +83,7 @@ def yourgames():
     user_id = session["user_id"]
 
     # Get the current list of favourites
-    favourites = db.execute("SELECT * FROM favourites WHERE user_id = ?", user_id)
+    favourites = db.execute("SELECT * FROM favourites WHERE user_id = ? ORDER BY game_name", user_id)
 
     # If there are no games in the list, return error
     if len(favourites) < 1:
@@ -285,7 +290,3 @@ def confirm_email(token):
     # Modify the information in the database to set the user with a confirmed email
     db.execute("UPDATE users SET e_confirm = 1 WHERE email= ? ", email)
     return redirect("/login")
-
-@app.route("/news")
-def news():
-    return render_template("news.html")

@@ -6,20 +6,20 @@
 
 {% block main %}
 <hr>
-<form action="/register" method="post">
+<form class="form-container" action="/register" method="post">
     <i>Please provide your Username and Password to register:</it>
     <hr>
     <div>
-        <input autocomplete="off" autofocus id="username" name="username" placeholder="Username" type="text">
+        <input class="form-mine" autocomplete="off" autofocus id="username" name="username" placeholder="Username" type="text">
     </div>
     <div>
-        <input id="password" name="password" placeholder="Password" type="password">
+        <input class="form-mine" id="password" name="password" placeholder="Password" type="password">
     </div>
     <div>
-        <input id="confirmation" name="confirmation" placeholder="Repeat Password" type="password">
+        <input class="form-mine" id="confirmation" name="confirmation" placeholder="Repeat Password" type="password">
     </div>
     <div>
-        <input autocomplete="off" id="email" name="email" placeholder="E-mail" type="email"> 
+        <input class="form-mine" autocomplete="off" id="email" name="email" placeholder="E-mail" type="email"> 
     </div>
     <hr>
     <button type="submit">Register</button>

@@ -17,11 +17,11 @@
     <tbody>
     {% for favourite in favourites %}
         <tr>
-            <td>{{ favourite["game_name"] }}</td>
+            <td class="favourite_game">{{ favourite["game_name"] }}</td>
             <td>
                 <form action="/remove_favourite" method="POST">
                     <input name="id" type="hidden" value="{{ favourite["game_id"] }}">
-                    <input type="submit" value="Remove from favourites">
+                    <button type="submit">Remove from favourites</button>
                 </form>
             </td>
         </tr>
