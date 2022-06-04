@@ -7,20 +7,15 @@
 {% block main %}
 <hr>
 <h1>YOUR GAMES</h1>
-<table class="game_table">
-    <thead>
-        <tr>
-            <th>Game</th>
-            <th></th>
-        </tr>
-    </thead>
+<table>
     <tbody>
     {% for favourite in favourites %}
         <tr>
+            <td><img src="/static/{{ favourite["image"] }}" width="100rem"></td>
             <td class="favourite_game">{{ favourite["game_name"] }}</td>
             <td>
                 <form action="/remove_favourite" method="POST">
-                    <input name="id" type="hidden" value="{{ favourite["game_id"] }}">
+                    <input name="id" type="hidden" value="{{ favourite["id"] }}">
                     <button type="submit">Remove from favourites</button>
                 </form>
             </td>

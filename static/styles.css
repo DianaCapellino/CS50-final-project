@@ -13,10 +13,19 @@
     display: inline-block;
     padding: 5px;
     margin: 5px;
+    border-radius: 10%;
+    border: #ffffff00 solid 0.1px;
+    font-size: larger;
 }
 
 .log {
-    padding-right: 20px;
+    color:#583d02;
+}
+
+.index:hover, .log:hover {
+    -webkit-box-shadow: -1px 9px 40px -12px rgba(255,255,0);
+    box-shadow: #fff894;
+    border: #fffcd78f solid 0.1px;
 }
 
 .media {
@@ -26,25 +35,20 @@
 }
 
 footer {
-    width: 100%;
+    width: 98%;
     height: 40px;
     line-height: 40px; /* Vertically center the text there */
-   }
+}
 
 a:link, a:visited, a:active {
     text-decoration: none;
     color: #583d02;
 }
 
-.container {
-    padding-right: 5px;
-    padding-left: 5px;
- }
-
 main {
-
     min-height: 430px;
-    width: 100%;
+    width: 98%;
+    margin-left: 0.5rem;
 }
 
 h1 {
@@ -57,7 +61,7 @@ h1 {
 
 #message {
     height: 200px;
-    position: relative;
+    
 }
 
 button {
@@ -73,16 +77,12 @@ button:hover {
 }
 
 .card {
-    min-height: 22rem;
+    min-height: 24rem;
 }
 
-.card:hover, .index:hover, .log:hover {
+.card:hover {
     -webkit-box-shadow: -1px 9px 40px -12px rgba(255,255,0);
     box-shadow: #fff894;
-}
-
-.index, .log {
-    border-radius: 20%;
 }
 
 .form-mine {
@@ -102,16 +102,28 @@ button:hover {
     border: #fff894 0.3px solid;
 }
 
-td {
-    padding: 0.3rem;
-}
-
-.favourite_game {
-    border-bottom: #fff894 solid 0.3px;
-    border-top: #fff894 solid 0.3px;
+.form-mine:focus {
+    border: #ffee00 0.3px solid;
 }
 
 .card-description {
     color: #fffcd7;
     font-size: small;
+}
+
+table {
+    border: 0.1rem #fff894 solid;
+    width: 70%;
+    background-color: #222222;
+}
+
+th, td {
+    border: 0.1rem #fff894 solid;
+    border-collapse: collapse;
+    padding: 1rem;
+    color: aliceblue;
+}
+
+#card-news {
+    min-height: 15rem;
 }

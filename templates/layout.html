@@ -42,12 +42,12 @@
             <div>
                 {% if session["user_id"] %}
                     <ul>
-                        <li class="log"><a href="/logout">Log Out</a></li>
+                        <li class="log"><a href="/logout"><u>Log Out</u></a></li>
                     </ul>
                 {% else %}
                     <ul>
-                        <li class="log"><a href="/register">Register</a></li>
-                        <li class="log"><a href="/login">Log In</a></li>
+                        <li class="log"><a href="/register"><u>Register</u></a></li>
+                        <li class="log"><a href="/login"><u>Log In</u></a></li>
                     </ul>
                 {% endif %}
             </div>
@@ -65,12 +65,12 @@
             {% block main %}{% endblock %}
         </main>
         <footer>
-            <div class="container">
-                <ul>
-                    <li class="media"><a href="https://www.facebook.com/diana.capellino" target="_blank">Facebook</a></li>
-                    <li class="media"><a href="https://www.instagram.com/diana.capellino/" target="_blank">Instagram</a></li>
-                    <li class="media"><a href="https://www.linkedin.com/in/diana-capellino-8865b4128/" target="_blank">LinkedIn</a></li>
-                    <li class="media"><a href="https://twitter.com/KoalaDiana" target="_blank">Twitter</a></li>
+            <div>
+                <ul class="media_parent">
+                    <li class="media"><a href="https://www.facebook.com/diana.capellino" target="_blank"><u>Facebook</u></a></li>
+                    <li class="media"><a href="https://www.instagram.com/diana.capellino/" target="_blank"><u>Instagram</u></a></li>
+                    <li class="media"><a href="https://www.linkedin.com/in/diana-capellino-8865b4128/" target="_blank"><u>LinkedIn</u></a></li>
+                    <li class="media"><a href="https://twitter.com/KoalaDiana" target="_blank"><u>Twitter</u></a></li>
                 </ul>
             </div>
         </footer>

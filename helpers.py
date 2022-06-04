@@ -4,6 +4,8 @@ import urllib.parse
 
 from flask import redirect, render_template, request, session
 from functools import wraps
+from datetime import datetime
+from newsapi import NewsApiClient
 
 def error(message, code=400):
     """Render message as an apology to user."""
@@ -31,4 +33,20 @@ def login_required(f):
             return redirect("/login")
         return f(*args, **kwargs)
     return decorated_function
-    
+
+def get_news(date):
+
+    try:
+        api_key = "36bc40bccb9b4db3bef3fa509115e019"
+        url = f"https://newsapi.org/v2/everything?q=videogames&language=en&from={date}&apiKey={api_key}"
+        response = requests.get(url)
+        response.raise_for_status()
+    except requests.RequestException:
+        return None
+
+    try:
+        data = response.json()
+        return data
+
+    except (KeyError, TypeError, ValueError):
+        return None

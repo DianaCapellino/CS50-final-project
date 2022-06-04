@@ -7,8 +7,25 @@
 {% block main %}
 <hr>
 <h1>
-    Keep in touch for news coming soon.
+    LATEST NEWS ABOUT VIDEOGAMES
 </h1>
-<!-- Coming feature for news -->
+
+<form action="/news" method="get">
+    {% for article in news %}
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-1">
+        <div class="col">
+            <div class="card text-white bg-dark mb-2" id="card-news">
+                <div class="card-body">
+                    <h5 class="card-title">{{ article["title"] }}</h5>
+                    <p class="card-text card-description">{{ article["description"] }}</p>
+                    <a href="{{ article["url"] }}" target="_blank">
+                        <img src="{{ article["urlToImage"] }}" alt="Image not available" height="150rem">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}    
+</form>
 
 {% endblock %}

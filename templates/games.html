@@ -10,123 +10,24 @@
     These are the games about to be released by Golden DOT Games.
 </p>
 <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-4">
+    {% for game in games %}
     <div class="col">
         <div class="card text-white bg-dark mb-4">
-            <img class="card-img-top" src="/static/dinosaur.png" alt="Dinosaur Escape Jumping"></a>
+            <img class="card-img-top" src="/static/{{ game["image"] }}" alt="{{ game["game_name"] }}"></a>
             <div class="card-body">
-                <h5 class="card-title">Dinosaur Escape Jumping</h5>
+                <h5 class="card-title">{{ game["game_name"] }}</h5>
                 <p class="card-text card-description">
-                    <i>A jumping game where a dinosaur is escaping from metheorits</i>
+                    {{ game["sm_description"] }}
                 </p>
             </div>
             <div class="card-body">
                 <form class="favourite" action="/add_favourite" method="POST">
-                    <input name="id" type="hidden" value="0">
+                    <input name="id" type="hidden" value="{{ game["id"] }}">
                     <button type="submit">Add to favourites</button>
                 </form>
             </div>
         </div>
     </div>
-    <div class="col">
-        <div class="card text-white bg-dark mb-4">
-            <img class="card-img-top" src="/static/goldenball.png" alt="Roll de Golden Ball">
-            <div class="card-body">
-                <h5 class="card-title">Roll de Golden Ball</h5>
-                <p class="card-text card-description">
-                    <i>This is a ball exploring islands to get items</i>
-                </p>
-            </div>
-            <div class="card-body">
-                <form class="favourite" action="/add_favourite" method="POST">
-                    <input name="id" type="hidden" value="1">
-                    <button type="submit">Add to favourites</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-white bg-dark mb-4">
-            <img class="card-img-top" src="/static/goldensearch.png" alt="Golden Search Adventure">
-            <div class="card-body">
-                <h5 class="card-title">Golden Search Adventure</h5>
-                <form class="favourite" action="/add_favourite" method="POST">
-                    <input name="id" type="hidden" value="2">
-                    <button type="submit">Add to favourites</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-white bg-dark mb-4">
-            <img class="card-img-top" src="/static/firefly.jpg" alt="Firefly Discovery">
-            <div class="card-body">
-                <h5 class="card-title">Firefly Discovery</h5>
-                <form class="favourite" action="/add_favourite" method="POST">
-                    <input name="id" type="hidden" value="3">
-                    <button  type="submit">Add to favourites</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-white bg-dark mb-4">
-            <img class="card-img-top" src="/static/race.jpg" alt="The Golden Race">
-            <div class="card-body">
-                <h5 class="card-title">The Golden Race</h5>
-                <form class="favourite" action="/add_favourite" method="POST">
-                    <input name="id" type="hidden" value="4">
-                    <button type="submit">Add to favourites</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-white bg-dark mb-4">
-            <img class="card-img-top" src="/static/goldendotbig.png" alt="Ball Fantasy">
-            <div class="card-body">
-                <h5 class="card-title">Ball Fantasy</h5>
-                <form class="favourite" action="/add_favourite" method="POST">
-                    <input name="id" type="hidden" value="5">
-                    <button type="submit">Add to favourites</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-white bg-dark mb-4">
-            <img class="card-img-top" src="/static/castillo.jpg" alt="Castle of Dreams">
-            <div class="card-body">
-                <h5 class="card-title">Castle of Dreams</h5>
-                <form class="favourite" action="/add_favourite" method="POST">
-                    <input name="id" type="hidden" value="6">
-                    <button type="submit">Add to favourites</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-white bg-dark mb-4">
-            <img class="card-img-top" src="/static/magic.jpg" alt="The Magic has Begun">
-            <div class="card-body">
-                <h5 class="card-title">The Magic has Begun</h5>
-                <form class="favourite" action="/add_favourite" method="POST">
-                    <input name="id" type="hidden" value="7">
-                    <button type="submit">Add to favourites</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-white bg-dark mb-4">
-            <img class="card-img-top" src="/static/cooking.jpg" alt="Golden Cooking Experience">
-            <div class="card-body">
-                <h5 class="card-title">Golden Cooking Experience</h5>
-                <form class="favourite" action="/add_favourite" method="POST">
-                    <input name="id" type="hidden" value="8">
-                    <button type="submit">Add to favourites</button>
-                </form>
-            </div>
-        </div>
-    </div>
+    {% endfor %}
 </div>
 {% endblock %}

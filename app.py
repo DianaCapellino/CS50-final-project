@@ -10,7 +10,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
 from itsdangerous import URLSafeTimedSerializer
 
-from helpers import error, login_required
+from helpers import error, login_required, get_news
 
 
 # Configure application
@@ -34,18 +34,6 @@ golden_email = "goldendotgames@gmail.com"
 mail = Mail(app)
 s = URLSafeTimedSerializer("GoldenSecretKey")
 
-GAMES = [
-    {"name": "Dinosaur Escape Jumping", "id": 0},
-    {"name": "Roll the Golden Ball", "id": 1},
-    {"name": "Golden Search Adventure", "id": 2},
-    {"name": "Firefly Discovery", "id": 3},
-    {"name": "The Golden Race", "id": 4},
-    {"name": "Ball Fantasy", "id": 5},
-    {"name": "Castle of Dreams", "id": 6},
-    {"name": "The Magic has Begun", "id": 7},
-    {"name": "Golden Cooking Experience", "id": 8}
-]
-
 @app.after_request
 def after_request(response):
     """Ensure responses aren't cached"""
@@ -62,12 +50,21 @@ def index():
 
 @app.route("/games")
 def games():
-    return render_template("games.html")
+
+    # Get the information of all the games and render the page with the list of games
+    games = db.execute ("SELECT * FROM games")
+    return render_template("games.html", games=games)
 
 
 @app.route("/news")
 def news():
-    return render_template("news.html")
+
+    news = get_news("2022-05-20")["articles"]
+
+    if news == None:
+        return error("No news")
+        
+    return render_template("news.html", news=news)
 
 
 @app.route("/search")
@@ -83,7 +80,8 @@ def yourgames():
     user_id = session["user_id"]
 
     # Get the current list of favourites
-    favourites = db.execute("SELECT * FROM favourites WHERE user_id = ? ORDER BY game_name", user_id)
+    favourites = db.execute(
+        "SELECT games.game_name, games.id, games.image FROM games JOIN favourites ON games.id=favourites.game_id WHERE favourites.user_id = ? ORDER BY games.game_name", user_id)
 
     # If there are no games in the list, return error
     if len(favourites) < 1:
@@ -103,7 +101,6 @@ def add_favourite():
 
     # Get the game_id from the item chicked
     game_id = int(request.form.get("id"))
-    game_name = GAMES[game_id]["name"]
 
     # Check if the game is already in the list
     favourites = db.execute("SELECT * FROM favourites WHERE user_id = ? AND game_id = ?", user_id, game_id)
@@ -111,8 +108,8 @@ def add_favourite():
         return error("Your game is already one of your favourites")
 
     # Add the game to the favourite games
-    db.execute("INSERT INTO favourites (user_id, game_id, game_name) VALUES (?, ?, ?)", 
-               user_id, game_id, game_name)
+    db.execute("INSERT INTO favourites (user_id, game_id) VALUES (?, ?)", 
+               user_id, game_id)
 
     # Redirect to Your Games site
     return redirect("/yourgames")
