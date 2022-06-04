@@ -7,7 +7,7 @@ from flask_session import Session
 from flask_mail import Mail, Message
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from itsdangerous import URLSafeTimedSerializer
 
 from helpers import error, login_required, get_news
@@ -59,17 +59,25 @@ def games():
 @app.route("/news")
 def news():
 
-    news = get_news("2022-05-20")["articles"]
+    # Get today's date and 7 days back
+    today = date.today()
+    td = timedelta(7)
+    sevendaysback = today - td
 
+    # Pass the date as an argument for the news API
+    news = get_news(sevendaysback)["articles"]
+
+    # If there are no news it will return the error with the message
     if news == None:
         return error("No news")
         
+    # Send the information of the news to the page and render
     return render_template("news.html", news=news)
 
 
 @app.route("/search")
 def search():
-    return render_template("games.html", games=GAMES)
+    return render_template("games.html")
 
 @app.route("/yourgames")
 @login_required
