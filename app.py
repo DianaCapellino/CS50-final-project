@@ -58,7 +58,7 @@ def games():
 
 @app.route("/news")
 def news():
-
+    
     # Get today's date and 7 days back
     today = date.today()
     td = timedelta(7)
